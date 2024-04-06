@@ -53,7 +53,7 @@ app.post('/newcourse', async (req, res) => {
 
         const { title, desc, pre, criteria, duration, hours } = req.body;
 
-        const newCourse = new Course({ title: title, desc: desc, pre: pre, criteria: criteria, duration: duration, hours: hours });
+        const newCourse = new Course({ title: title, desc: desc, pre: pre, criteria: criteria, duration: duration, hours: hours, assign: "false" });
 
         const savedCourse = await newCourse.save();
         res.json(savedCourse);
@@ -90,7 +90,7 @@ app.post('/assigncourse', async (req, res) => {
     try {
 
         const { name, email, selectCourse } = req.body;
-
+        console.log(selectCourse)
         const newAssign = new Instructor({ name: name, email: email, course: selectCourse });
 
         const savedAssign = await newAssign.save();
@@ -98,5 +98,53 @@ app.post('/assigncourse', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while Assigning the course' });
+    }
+});
+
+app.post('/checkcourse', async (req, res) => {
+    try {
+
+        const { selectCourse } = req.body;
+        console.log(selectCourse)
+
+        const newCheck = new assignedCourse({ c_id: selectCourse });
+        const savedAssign = await newCheck.save();
+        res.json(newCheck);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while Assigning the course' });
+    }
+});
+
+app.get('/fetchassign', async (req, res) => {
+    try {
+        const assign = await Instructor.find()
+
+        res.send(assign);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching assign instructor' });
+    }
+});
+
+app.get('/fetchAssignCourse', async (req, res) => {
+    try {
+        const courses = await Course.find({ role: 'Instructor' });
+
+        res.send(courses);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching courses' });
+    }
+});
+app.get('/fetchcheck', async (req, res) => {
+    try {
+        const checkCourse = await assignedCourse.find();
+
+        res.send(checkCourse);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching courses' });
     }
 });

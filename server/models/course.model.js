@@ -22,6 +22,9 @@ const courseSchema = new mongoose.Schema(
         hours: {
             type: String,
         },
+        assign: {
+            type: String,
+        },
 
     },
     {

@@ -48,9 +48,9 @@ const AssignCourse = () => {
         }
     };
 
+
     const AssignCourseHandler = async (e) => {
         e.preventDefault();
-
         const response = await fetch('http://localhost:3001/assigncourse', {
             method: 'POST',
             headers: {
@@ -58,6 +58,8 @@ const AssignCourse = () => {
             },
             body: JSON.stringify({ name, email, selectCourse })
         });
+
+
 
         if (response.ok) {
             // Handle success
@@ -103,7 +105,7 @@ const AssignCourse = () => {
                                 <option disabled selected>Select Course </option>
                                 {
                                     courses.map((val, i) => {
-                                        return <option value={val.title} >{val.title}</option>
+                                        { return <option value={val._id} >{val._id}</option> }
                                     })
                                 }
 

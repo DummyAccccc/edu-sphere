@@ -2,7 +2,7 @@ import React from 'react'
 
 const CourseCard = (props) => {
     const cardData = props.data
-    // const assign = props.assign
+    const assign = props.assign
 
     return (
         <div className="card card-compact w-full bg-base-100 shadow-xl">
@@ -14,12 +14,12 @@ const CourseCard = (props) => {
 
                 <p className='text-md'><span className="font-bold text-md">Prerequisites</span>: {cardData.pre}</p>
                 <p className='text-md'><span className="font-bold text-md">Enrollment Criteria:</span> {cardData.criteria}</p>
-                {/* {assign.map((val) => {
-                    if (cardData.title == val.course) {
+                {assign.map((val) => {
+                    if (cardData._id == val.course) {
                         return <p className='text-md'><span className="font-bold text-md"></span> Instructor: {val.name} </p>
                         return;
                     }
-                })} */}
+                })}
                 <div className="card-actions justify-between items-center">
                     <div>
                         Duration: {cardData.duration}

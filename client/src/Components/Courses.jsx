@@ -8,7 +8,7 @@ const Courses = () => {
     useEffect(() => {
 
         fetchData()
-        // fetchAssign()
+        fetchAssign()
 
     }, []);
 
@@ -25,18 +25,18 @@ const Courses = () => {
         }
     };
 
-    // const fetchAssign = async () => {
-    //     try {
-    //         const response = await fetch('http://localhost:3001/fetchassign'); // Assuming your backend is running on the same host
-    //         if (!response.ok) {
-    //             throw new Error('Failed to fetch data');
-    //         }
-    //         const data = await response.json();
-    //         await setAssignInstructor(data);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+    const fetchAssign = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/fetchassign'); // Assuming your backend is running on the same host
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            await setAssignInstructor(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
 
         <>
@@ -52,7 +52,7 @@ const Courses = () => {
 
                 <div className='w-full grid grid-cols-1 lg:grid-cols-3 px-8 py-4 gap-4'>
                     {courses.map((val, index) => {
-                        return <CourseCard data={val} key={index} />
+                        return <CourseCard data={val} assign={assignInstructor} key={index} />
                     })}
 
                 </div>
