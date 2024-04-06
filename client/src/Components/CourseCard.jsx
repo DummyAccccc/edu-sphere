@@ -5,7 +5,7 @@ const CourseCard = (props) => {
     const assign = props.assign
 
     return (
-        <div className="card card-compact w-full bg-base-100 shadow-xl">
+        <div className="card card-compact w-full bg-gray-700 shadow-xl">
             {/* <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure> */}
             <div className="card-body">
                 <h2 className="card-title text-3xl">{cardData.title}</h2>
@@ -26,7 +26,7 @@ const CourseCard = (props) => {
                     </div>
                     <div className='flex flex-row gap-3'>
 
-                        <button className="btn btn-success px-4 rounded-lg">Edit</button>
+                        <button className="btn btn-success px-6 rounded-lg"> Edit  </button>
                         <button className="btn btn-error px-4 rounded-lg">Delete</button>
                     </div>
                 </div>

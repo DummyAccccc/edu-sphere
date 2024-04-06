@@ -63,6 +63,7 @@ const CreateAccount = () => {
 
     return (
         <>
+        
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -76,7 +77,8 @@ const CreateAccount = () => {
                 theme="light"
                 transition:Slide
             />
-            {user ? <div className='w-full flex items-center justify-center'>
+            
+            {user ? <div className='w-full flex items-center justify-center shadow-lg '>
                 <div className='w-3/4 md:w-1/2 flex flex-col gap-y-8 px-8 py-8 bg-gray-100 rounded-lg mb-10'>
                     <h1 className='text-2xl md:text-4xl text-black text-center'>Create {user} Account </h1>
 
