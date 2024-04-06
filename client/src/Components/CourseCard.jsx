@@ -20,9 +20,15 @@ const CourseCard = (props) => {
                         return;
                     }
                 })} */}
-                <div className="card-actions justify-end">
-                    <button className="btn btn-success px-4 rounded-lg">Edit</button>
-                    <button className="btn btn-error px-4 rounded-lg">Delete</button>
+                <div className="card-actions justify-between items-center">
+                    <div>
+                        Duration: {cardData.duration}
+                    </div>
+                    <div className='flex flex-row gap-3'>
+
+                        <button className="btn btn-success px-4 rounded-lg">Edit</button>
+                        <button className="btn btn-error px-4 rounded-lg">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,6 +16,12 @@ const courseSchema = new mongoose.Schema(
         criteria: {
             type: String,
         },
+        duration: {
+            type: String,
+        },
+        hours: {
+            type: String,
+        },
 
     },
     {

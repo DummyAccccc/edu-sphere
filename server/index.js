@@ -4,7 +4,7 @@ const cors = require('cors')
 
 const User = require('./models/users.model')
 const Course = require('./models/course.model')
-// const Instructor = require('./models/instructor.model')
+const Instructor = require('./models/instructor.model')
 const app = express()
 
 app.use(cors())
@@ -51,9 +51,9 @@ app.get('/fetchUsers', async (req, res) => {
 app.post('/newcourse', async (req, res) => {
     try {
 
-        const { title, desc, pre, criteria } = req.body;
+        const { title, desc, pre, criteria, duration, hours } = req.body;
 
-        const newCourse = new Course({ title: title, desc: desc, pre: pre, criteria: criteria });
+        const newCourse = new Course({ title: title, desc: desc, pre: pre, criteria: criteria, duration: duration, hours: hours });
 
         const savedCourse = await newCourse.save();
         res.json(savedCourse);
@@ -71,5 +71,32 @@ app.get('/fetchCourse', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while fetching courses' });
+    }
+});
+
+app.get('/fetchinstructor', async (req, res) => {
+    try {
+        // Fetch all users from the database
+        const instructors = await User.find({ role: 'Instructor' });
+
+        res.send(instructors);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching instructors' });
+    }
+});
+
+app.post('/assigncourse', async (req, res) => {
+    try {
+
+        const { name, email, selectCourse } = req.body;
+
+        const newAssign = new Instructor({ name: name, email: email, course: selectCourse });
+
+        const savedAssign = await newAssign.save();
+        res.json(savedAssign);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while Assigning the course' });
     }
 });

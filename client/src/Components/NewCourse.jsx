@@ -1,14 +1,32 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const NewCourse = () => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [pre, setPre] = useState("");
     const [criteria, setCriteria] = useState("");
+    const [duration, setDuration] = useState("");
+    const [hours, setHours] = useState("");
 
     const navigate = useNavigate();
 
+    const courseSuccess = () => {
+        toast.success(`New Course Created Successfully ! `, {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        const myTimeout = setTimeout(() => (navigate('/dashboard/courses')), 3000);
+    }
 
     const NewCourseHandler = async (e) => {
         e.preventDefault();
@@ -18,12 +36,12 @@ const NewCourse = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title, desc, pre, criteria })
+            body: JSON.stringify({ title, desc, pre, criteria, duration, hours })
         });
 
         if (response.ok) {
             console.log('Course Added Successfully');
-            navigate('/dashboard/courses')
+            courseSuccess()
         } else {
             // Handle error
             console.error('Failed to register user');
@@ -31,6 +49,19 @@ const NewCourse = () => {
     }
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition:Slide
+            />
             <div className='w-full flex items-center justify-center py-4'>
                 <div className='w-3/4 md:w-1/2 flex flex-col gap-y-8 px-8 py-8 bg-slate-800 rounded-lg'>
                     <h1 className='text-2xl md:text-4xl font-bold text-white text-center'>Add New Course</h1>
@@ -51,6 +82,14 @@ const NewCourse = () => {
                         <div className='w-full mb-4 flex flex-col gap-2'>
                             <label htmlFor="" className='px-3 text-sm md:text-lg'>Enrollment Criteria</label>
                             <input type="text" placeholder='Enter Enrollment Criteria' className='border-b-4 border-none p-3 bg-slate-700 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setCriteria(e.target.value)} value={criteria} />
+                        </div>
+                        <div className='w-full mb-4 flex flex-col gap-2'>
+                            <label htmlFor="" className='px-3 text-sm md:text-lg'>Duration</label>
+                            <input type="text" placeholder='Enter Enrollment Criteria' className='border-b-4 border-none p-3 bg-slate-700 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setDuration(e.target.value)} value={duration} />
+                        </div>
+                        <div className='w-full mb-4 flex flex-col gap-2'>
+                            <label htmlFor="" className='px-3 text-sm md:text-lg'>Daily Lecture Hours</label>
+                            <input type="text" placeholder='Enter Enrollment Criteria' className='border-b-4 border-none p-3 bg-slate-700 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setHours(e.target.value)} value={hours} />
                         </div>
                         <div className='w-full my-6 flex flex-col gap-2'>
                             <button className='bg-indigo-600 p-3 rounded-md text-white text-md md:text-lg'>Add Course </button>
