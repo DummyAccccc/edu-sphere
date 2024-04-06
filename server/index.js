@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 const User = require('./models/users.model')
-// const Course = require('./models/course.model')
+const Course = require('./models/course.model')
 // const Instructor = require('./models/instructor.model')
 const app = express()
 
@@ -34,5 +34,42 @@ app.post('/users', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while creating the user' });
+    }
+});
+
+app.get('/fetchUsers', async (req, res) => {
+    try {
+        const users = await User.find();
+
+        res.send(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching users' });
+    }
+});
+
+app.post('/newcourse', async (req, res) => {
+    try {
+
+        const { title, desc, pre, criteria } = req.body;
+
+        const newCourse = new Course({ title: title, desc: desc, pre: pre, criteria: criteria });
+
+        const savedCourse = await newCourse.save();
+        res.json(savedCourse);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while creating the user' });
+    }
+});
+
+app.get('/fetchCourse', async (req, res) => {
+    try {
+        const courses = await Course.find();
+
+        res.send(courses);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching courses' });
     }
 });
