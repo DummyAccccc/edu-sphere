@@ -8,7 +8,7 @@ const Signin = () => {
 
     return (
         <>
-            <div className="w-full bg-gray-200 h-screen text-black">
+            <div className="w-full bg-gray-200 h-screen text-black bo">
                 <nav className='w-full p-7 px-14 flex flex-row justify-between items-center'>
                     <h1 className='text-md md:text-3xl'>
                         <Link to="/"> Edu-Sphere</Link>

@@ -7,6 +7,7 @@ import Cards from './Cards'
 import Footer from './Footer'
 import FeaturesSection from './FeaturesSection'
 import UserGithub from '../Api/UserGithub'
+import Dashboard02 from './Dashboard02'
 
 const HomePage = () => {
     return (
@@ -27,8 +28,14 @@ const HomePage = () => {
             <section >
                 <Footer />
             </section>
-            <UserGithub />
-            
+            <section >
+                <UserGithub />
+            </section>
+
+            <section className='mt-30'>
+                <Dashboard02 />
+            </section>
+
 
 
         </main>
