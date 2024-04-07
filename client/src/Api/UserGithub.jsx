@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 function UserGithub(props) {
     const [userData, setUserData] = useState([]);
-    const username = props.id;
+    // const username = props.id;
     useEffect(() => {
-        // const token = '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'; // Replace 'YOUR_TOKEN' with your actual personal access token
-        // const username = 'aditya-gawali';
+        const token = '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'; 
+        const username = props.id;
 
-        // const api = axios.create({
-        //     baseURL: 'https://api.github.com',
-        //     headers: {
-        //         Authorization: `Bearer ${token}`,
-        //     },
-        // });
+        const api = axios.create({
+            baseURL: 'https://api.github.com',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
        axios.get(`https://api.github.com/users/${username}`)
             .then(response => {
