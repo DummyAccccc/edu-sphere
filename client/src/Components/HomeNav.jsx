@@ -35,9 +35,9 @@ const Navbar = () => {
           <h1 className="text-blue-600 text-4xl font-bold">Edu-Sphere</h1>
           <div className="flex justify-around items-center">
             <ul className={`hidden md:flex text-lg mr-14`}>
-              <li className="mr-4"><a href="#" className="text-white hover:text-slate-950">Software</a></li>
-              <li className="mr-4"><a href="#" className="text-white hover:text-slate-950">Pricing</a></li>
-              <li className="mr-4"><a href="#" className="text-white hover:text-slate-950">Resources</a></li>
+              <li className="mr-4"><a href="#" className="text-white mr-14 hover:text-slate-950">Software</a></li>
+              <li className="mr-4"><a href="#" className="text-white mr-14 hover:text-slate-950">Pricing</a></li>
+              <li className="mr-4"><a href="#" className="text-white mr-14 hover:text-slate-950">Resources</a></li>
             </ul>
             {/* <button className="bg-slate-950 text-white px-4 py-2 rounded-md mr-4 hidden md:block">Get Demo</button> */}
             <Link to="/signin"><button className=" bg-blue-800 text-white text-bold px-4 py-2 rounded-md hidden md:block hover:bg-blue-500 hover:text-slate-950 ">Get Started Free</button></Link>
