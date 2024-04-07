@@ -163,68 +163,134 @@ const CourseCard = (props) => {
                     theme="light"
                     transition:Slide
                 />
-                <div className="card card-compact w-full bg-gray-700 shadow-xl">
-                    {/* <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure> */}
-                    <div className="card-body">
-                        <h2 className="card-title text-3xl">{cardData.title}</h2>
-                        <p className='text-md'>{cardData.desc}</p>
-                        <div className="divider"></div>
+                {
+                    assign.map((val, i) => {
+                        return val.course == cardData._id && user == "Instructor" ? <div className="card card-compact w-full bg-gray-700 shadow-xl">
 
-                        <p className='text-md'><span className="font-bold text-md">Prerequisites</span>: {cardData.pre}</p>
-                        <p className='text-md'><span className="font-bold text-md">Enrollment Criteria:</span> {cardData.criteria}</p>
-                        {assign.map((val) => {
-                            if (cardData._id == val.course) {
-                                return <p className='text-md'><span className="font-bold text-md"></span> Instructor: {val.name} </p>
-                                return;
-                            }
-                        })}
-                        <div className="card-actions justify-between items-center">
-                            <div>
-                                Duration: {cardData.duration}
-                            </div>
-                            {
-                                display == "true" && user == "Administrator" && publishLength != 0 ? <div className='w-full flex flex-row justify-end align-end gap-3'>
+                            <div className="card-body">
+                                <h2 className="card-title text-3xl">{cardData.title}</h2>
+                                <p className='text-md'>{cardData.desc}</p>
+                                <div className="divider"></div>
 
-                                    {
-                                        publish.map((val, i) => {
-                                            return cardData._id == val.course ? <h1 className='text-2xl'>Published</h1> : ""
-                                        })
+                                <p className='text-md'><span className="font-bold text-md">Prerequisites</span>: {cardData.pre}</p>
+                                <p className='text-md'><span className="font-bold text-md">Enrollment Criteria:</span> {cardData.criteria}</p>
+                                {assign.map((val) => {
+                                    if (cardData._id == val.course) {
+                                        return <p className='text-md'><span className="font-bold text-md"></span> Instructor: {val.name} </p>
+                                        return;
                                     }
+                                })}
+                                <div className="card-actions justify-between items-center">
+                                    <div>
+                                        Duration: {cardData.duration}
+                                    </div>
                                     {
-                                        publish.map((val, i) => {
-                                            return cardData._id != val.course ? <>
+                                        display == "true" && user == "Administrator" && publishLength != 0 ? <div className='w-full flex flex-row justify-end align-end gap-3'>
+
+                                            {
+                                                publish.map((val, i) => {
+                                                    return cardData._id == val.course ? <h1 className='text-2xl'>Published</h1> : ""
+                                                })
+                                            }
+                                            {
+                                                publish.map((val, i) => {
+                                                    return cardData._id != val.course ? <>
+                                                        <button className="btn btn-success px-6 rounded-lg" onClick={() => handlePublish(cardData._id)}> Publish Course </button>
+
+                                                        <button className="btn btn-error  rounded-full"><MdDelete className='text-xl' /></button>
+                                                    </> : ""
+                                                })
+                                            }
+
+                                        </div> : <>
+                                            {status == "true" && student == "false" ? <>
                                                 <button className="btn btn-success px-6 rounded-lg" onClick={() => handlePublish(cardData._id)}> Publish Course </button>
 
-                                                <button className="btn btn-error  rounded-full"><MdDelete className='text-xl' /></button>
-                                            </> : ""
-                                        })
+                                                <button className="btn btn-error  rounded-full"><MdDelete className='text-xl' /></button> </> : ""
+                                            }</>
                                     }
 
-                                </div> : <>
-                                    {status == "true" && student == "false" ? <>
-                                        <button className="btn btn-success px-6 rounded-lg" onClick={() => handlePublish(cardData._id)}> Publish Course </button>
+                                    {
+                                        user == "Student" && status == "true" ? <div className='w-full flex flex-row justify-end align-end gap-3'>
+                                            {enrollLength != 0 ?
+                                                enroll.map((val, i) => {
+                                                    return cardData._id == val.course_id && val.user_email == userEmail && val.invitation == false ? <h1 className='text-2xl'>Pending</h1> : <button className="btn btn-success px-6 rounded-lg" onClick={() => handleEnroll(cardData._id)}>Enroll Course</button>
+                                                })
+                                                : <button className="btn btn-success px-6 rounded-lg" onClick={() => handleEnroll(cardData._id)}>Enroll Course</button>
+                                            }
 
-                                        <button className="btn btn-error  rounded-full"><MdDelete className='text-xl' /></button> </> : ""
-                                    }</>
-                            }
 
-                            {
-                                user == "Student" && status == "true" ? <div className='w-full flex flex-row justify-end align-end gap-3'>
-                                    {enrollLength != 0 ?
-                                        enroll.map((val, i) => {
-                                            return cardData._id == val.course_id && val.user_email == userEmail && val.invitation == false ? <h1 className='text-2xl'>Pending</h1> : <button className="btn btn-success px-6 rounded-lg" onClick={() => handleEnroll(cardData._id)}>Enroll Course</button>
-                                        })
-                                        : <button className="btn btn-success px-6 rounded-lg" onClick={() => handleEnroll(cardData._id)}>Enroll Course</button>
+
+
+                                        </div> : ""
                                     }
+                                </div>
+                            </div>
+                        </div> : ""
+                    })
+                }
 
+                {
+                    user != "Instructor" ? <div className="card card-compact w-full bg-gray-700 shadow-xl">
 
+                        <div className="card-body">
+                            <h2 className="card-title text-3xl">{cardData.title}</h2>
+                            <p className='text-md'>{cardData.desc}</p>
+                            <div className="divider"></div>
 
+                            <p className='text-md'><span className="font-bold text-md">Prerequisites</span>: {cardData.pre}</p>
+                            <p className='text-md'><span className="font-bold text-md">Enrollment Criteria:</span> {cardData.criteria}</p>
+                            {assign.map((val) => {
+                                if (cardData._id == val.course) {
+                                    return <p className='text-md'><span className="font-bold text-md"></span> Instructor: {val.name} </p>
+                                    return;
+                                }
+                            })}
+                            <div className="card-actions justify-between items-center">
+                                <div>
+                                    Duration: {cardData.duration}
+                                </div>
+                                {
+                                    display == "true" && user == "Administrator" && publishLength != 0 ? <div className='w-full flex flex-row justify-end align-end gap-3'>
 
-                                </div> : ""
-                            }
+                                        {
+                                            publish.map((val, i) => {
+                                                return cardData._id == val.course ? <h1 className='text-2xl'>Published</h1> : ""
+                                            })
+                                        }
+                                        {
+                                            publish.map((val, i) => {
+                                                return cardData._id != val.course ? <>
+                                                    <button className="btn btn-success px-6 rounded-lg" onClick={() => handlePublish(cardData._id)}> Publish Course </button>
+
+                                                    <button className="btn btn-error  rounded-full"><MdDelete className='text-xl' /></button>
+                                                </> : ""
+                                            })
+                                        }
+
+                                    </div> : <>
+                                        {status == "true" && student == "false" ? <>
+                                            <button className="btn btn-success px-6 rounded-lg" onClick={() => handlePublish(cardData._id)}> Publish Course </button>
+
+                                            <button className="btn btn-error  rounded-full"><MdDelete className='text-xl' /></button> </> : ""
+                                        }</>
+                                }
+
+                                {
+                                    user == "Student" && status == "true" ? <div className='w-full flex flex-row justify-end align-end gap-3'>
+                                        {enrollLength != 0 ?
+                                            enroll.map((val, i) => {
+                                                return cardData._id == val.course_id && val.user_email == userEmail && val.invitation == false ? <h1 className='text-2xl'>Pending</h1> : <button className="btn btn-success px-6 rounded-lg" onClick={() => handleEnroll(cardData._id)}>Enroll Course</button>
+                                            })
+                                            : <button className="btn btn-success px-6 rounded-lg" onClick={() => handleEnroll(cardData._id)}>Enroll Course</button>
+                                        }
+
+                                    </div> : ""
+                                }
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div> : ""
+                }
             </div>
 
 

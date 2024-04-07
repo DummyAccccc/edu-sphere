@@ -46,9 +46,9 @@ const DNavbar = () => {
                 {
                     user == "Instructor" ? <div className="flex-none">
                         <ul className="menu menu-horizontal px-1 text-lg hidden md:flex">
-                            <li><Link to="/dashboard/courses" >Courses</Link></li>
+                            {/* <li><Link to="/dashboard/courses" >Courses</Link></li> */}
                             <li><Link to="/dashboard/student">Student</Link></li>
-                            <li><a>Payments</a></li>
+                            {/* <li><a>Payments</a></li> */}
                             <li><a>Profile</a></li>
                             <li><Link to="/">Logout</Link></li>
 

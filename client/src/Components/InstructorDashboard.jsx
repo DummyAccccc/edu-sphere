@@ -11,7 +11,77 @@ const InstructorDashboard = () => {
     const [assignInstructor, setAssignInstructor] = useState([]);
     const role = useSelector(state => state.role);
     const [users, setUsers] = useState([]);
-    const [instructor, setInstructors] = useState([]);
+    const [instructor, setInstructor] = useState([]);
+
+
+    useEffect(() => {
+
+        fetchData()
+        fetchAssign()
+        fetchUsers()
+        fetchInst()
+
+
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/fetchCourse'); // Assuming your backend is running on the same host
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            await setCourses(data);
+            await setCoursesCount(data.length)
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const fetchAssign = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/fetchassign'); // Assuming your backend is running on the same host
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            await setAssignInstructor(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    console.log(assignInstructor)
+
+    const fetchUsers = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/fetchUsers'); // Assuming your backend is running on the same host
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            await setUsers(data.length);
+            // console.log(userData)
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const fetchInst = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/fetchinstructor'); // Assuming your backend is running on the same host
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            await setInstructor(data.length);
+            console.log(data)
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
 
     return (
         <>
