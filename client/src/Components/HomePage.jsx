@@ -16,25 +16,25 @@ const HomePage = () => {
             <section>
                 <Hero />
             </section>
-            <section>
+            <section id='aboutus'>
                 <Hero02 />
             </section>
-            <section>
+            <section >
                 <div className="container text-black text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Features</h2>
                     <p className="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus gravida justo eget fermentum pretium.</p>
                 </div>
-                <FeaturesSection />
+                <FeaturesSection id='features'  />
             </section>
-            <section className='mt-20'>
+            {/* <section className='mt-20'>
                 <Cards />
-            </section>
+            </section> */}
             <section >
                 <Footer />
             </section>
-            {/* <section >
-                <UserGithub id="aditya-gawali" />
-            </section> */}
+            <section >
+                <UserGithub idd='aditya-gawali' />
+            </section>
 
             {/* <section className='mt-30'>
                 <Dashboard02 />
