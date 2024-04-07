@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateRole } from '../actions/roleActions';
 import { updateCompany } from '../actions/companyActions';
+import { updateEmail } from '../actions/emailActions';
 
 const CreateAccount = () => {
     const [user, setUser] = useState("");
@@ -44,7 +45,7 @@ const CreateAccount = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user == "Administrator" ? { user, name, email, mobile, company, password } : { user, name, email, mobile, password })
+            body: JSON.stringify(user != "Instructor" ? { user, name, email, mobile, company, password } : { user, name, email, mobile, password })
         });
 
         if (response.ok) {
@@ -52,6 +53,7 @@ const CreateAccount = () => {
             console.log('User registered successfully');
             dispatch(updateRole(user)); // Dispatch the updateMessage action
             dispatch(updateCompany(company)); // Dispatch the updateMessage action
+            dispatch(updateEmail(email)); // Dispatch the updateMessage action
             successAlert();
 
         } else {
@@ -99,6 +101,10 @@ const CreateAccount = () => {
                             <label htmlFor="" className='px-3 text-sm md:text-lg'>Company Name</label>
                             <input type="text" placeholder='Enter Company Name' className='border-b-4 border-none p-3 bg-gray-200 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setCompany(e.target.value)} value={company} />
                         </div> : <div></div>}
+                        {user == "Student" ? <div className='w-full mb-4 flex flex-col gap-2'>
+                            <label htmlFor="" className='px-3 text-sm md:text-lg'>Github Username</label>
+                            <input type="text" placeholder='Enter Github Username' className='border-b-4 border-none p-3 bg-gray-200 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setCompany(e.target.value)} value={company} />
+                        </div> : <div></div>}
                         <div className='w-full mb-4 flex flex-col gap-2'>
                             <label htmlFor="" className='px-3 text-sm md:text-lg'>Password</label>
                             <input type="password" placeholder='Enter Password' className='border-b-4 border-none p-3 bg-gray-200 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setPassword(e.target.value)} value={password} />
@@ -108,9 +114,9 @@ const CreateAccount = () => {
                         </div>
                     </form>
                 </div>
-            </div> : <div className='w-full h-3/4 flex items-center justify-center'>
+            </div> : <div className='w-full h-3/4 flex items-start justify-center mt-24'>
                 <div className='w-3/4 md:w-1/2 flex flex-col gap-y-8 px-8 py-8 bg-gray-100 rounded-lg shadow-lg'>
-                    <h1 className='text-2xl md:text-4xl font-bol text-center'>Which best describes your role?</h1>
+                    <h1 className='text-2xl md:text-4xl text-center'>Which best describes your role?</h1>
 
                     <form className='text-xl' onSubmit={RoleSubmitHandler}>
 

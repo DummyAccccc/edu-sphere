@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateRole } from '../actions/roleActions';
 import { updateCompany } from '../actions/companyActions';
+import { updateEmail } from '../actions/emailActions';
 
 
 const Login = () => {
@@ -70,6 +71,7 @@ const Login = () => {
             if (val.email == email && val.password == password) {
                 dispatch(updateRole(val.role)); // Dispatch the updateMessage action
                 dispatch(updateCompany(val.company)); // Dispatch the updateMessage action
+                dispatch(updateEmail(val.email)); // Dispatch the updateMessage action
                 setInvalidUser(false)
                 loginSuccess()
 

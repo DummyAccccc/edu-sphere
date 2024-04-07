@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AdminDashboard from './AdminDashboard';
 import { useNavigate } from 'react-router-dom';
 import StudentDashboard from './StudentDashboard';
+import InstructorDashboard from './InstructorDashboard';
 
 
 const Dashboard = () => {
@@ -21,7 +22,7 @@ const Dashboard = () => {
             <div className='w-full h-screen'>
 
                 {role == "Administrator" ? <AdminDashboard /> : ""}
-                {role == "Instructor" ? <AdminDashboard /> : ""}
+                {role == "Instructor" ? <InstructorDashboard /> : ""}
                 {role == "Student" ? <StudentDashboard /> : ""}
 
             </div>

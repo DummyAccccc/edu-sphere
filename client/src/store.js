@@ -3,11 +3,13 @@
 import { createStore } from 'redux';
 import { UPDATE_USER_ROLE } from './actions/roleActions';
 import { UPDATE_USER_COMPANY } from './actions/companyActions';
+import { UPDATE_EMAIL } from './actions/emailActions';
 
 // Initial state
 const initialState = {
     role: "",
-    company: ""
+    company: "",
+    email: ""
 };
 
 // Reducer (optional for this case)
@@ -23,6 +25,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 company: action.payload
+            };
+        case UPDATE_EMAIL:
+            return {
+                ...state,
+                email: action.payload
             };
 
 

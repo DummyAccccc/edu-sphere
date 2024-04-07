@@ -124,7 +124,7 @@ const AdminDashboard = () => {
 
                 <div className='w-full grid grid-cols-1 lg:grid-cols-3 px-8 py-4 gap-4'>
                     {courses.map((val, index) => {
-                        return <CourseCard data={val} assign={assignInstructor} display="false" key={index} />
+                        return <CourseCard data={val} assign={assignInstructor} display="false" student="false" key={index} />
                     })}
 
                 </div>

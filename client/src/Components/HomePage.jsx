@@ -6,7 +6,7 @@ import Hero02 from './Hero02'
 import Cards from './Cards'
 import Footer from './Footer'
 import FeaturesSection from './FeaturesSection'
-import UserGithub from '../Api/UserGithub'
+import UserGithub from './UserGithub'
 import Dashboard02 from './Dashboard02'
 
 const HomePage = () => {
@@ -33,12 +33,12 @@ const HomePage = () => {
                 <Footer />
             </section>
             {/* <section >
-                <UserGithub />
+                <UserGithub id="aditya-gawali" />
             </section> */}
 
-            <section className='mt-30'>
+            {/* <section className='mt-30'>
                 <Dashboard02 />
-            </section>
+            </section> */}
 
 
 
