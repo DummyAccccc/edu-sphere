@@ -38,13 +38,13 @@ const CreateAccount = () => {
 
     const SignInHandler = async (e) => {
         e.preventDefault();
-
+        console.log(user)
         const response = await fetch('http://localhost:3001/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user != "Administrator" ? { user, name, email, mobile, password } : { user, name, email, mobile, company, password })
+            body: JSON.stringify(user == "Administrator" ? { user, name, email, mobile, company, password } : { user, name, email, mobile, password })
         });
 
         if (response.ok) {
@@ -63,7 +63,7 @@ const CreateAccount = () => {
 
     return (
         <>
-        
+
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -77,7 +77,7 @@ const CreateAccount = () => {
                 theme="light"
                 transition:Slide
             />
-            
+
             {user ? <div className='w-full flex items-center justify-center shadow-lg '>
                 <div className='w-3/4 md:w-1/2 flex flex-col gap-y-8 px-8 py-8 bg-gray-100 rounded-lg mb-10'>
                     <h1 className='text-2xl md:text-4xl text-black text-center'>Create {user} Account </h1>

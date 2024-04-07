@@ -62,7 +62,7 @@ const NewCourse = () => {
                 theme="light"
                 transition:Slide
             />
-            <div className='w-full flex items-center justify-center py-4'>
+            <div className='w-full flex items-center justify-center py-4 bg-slate-900'>
                 <div className='w-3/4 md:w-1/2 flex flex-col gap-y-8 px-8 py-8 bg-slate-800 rounded-lg'>
                     <h1 className='text-2xl md:text-4xl font-bold text-white text-center'>Add New Course</h1>
 
@@ -85,11 +85,11 @@ const NewCourse = () => {
                         </div>
                         <div className='w-full mb-4 flex flex-col gap-2'>
                             <label htmlFor="" className='px-3 text-sm md:text-lg'>Duration</label>
-                            <input type="text" placeholder='Enter Enrollment Criteria' className='border-b-4 border-none p-3 bg-slate-700 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setDuration(e.target.value)} value={duration} />
+                            <input type="text" placeholder='Enter Course Duration' className='border-b-4 border-none p-3 bg-slate-700 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setDuration(e.target.value)} value={duration} />
                         </div>
                         <div className='w-full mb-4 flex flex-col gap-2'>
                             <label htmlFor="" className='px-3 text-sm md:text-lg'>Daily Lecture Hours</label>
-                            <input type="text" placeholder='Enter Enrollment Criteria' className='border-b-4 border-none p-3 bg-slate-700 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setHours(e.target.value)} value={hours} />
+                            <input type="text" placeholder='Enter Lecture hours' className='border-b-4 border-none p-3 bg-slate-700 rounded-md outline-none focus:ring-indigo-600 focus:ring-2 text-sm md:text-lg' onChange={(e) => setHours(e.target.value)} value={hours} />
                         </div>
                         <div className='w-full my-6 flex flex-col gap-2'>
                             <button className='bg-indigo-600 p-3 rounded-md text-white text-md md:text-lg'>Add Course </button>

@@ -86,8 +86,8 @@ const AssignCourse = () => {
                 theme="light"
                 transition:Slide
             />
-            <div className='w-full flex items-center justify-center py-10'>
-                <div className='w-3/4 md:w-1/2 flex flex-col gap-y-8 px-8 py-8 bg-slate-800 rounded-lg'>
+            <div className='w-full flex items-center justify-center py-10 bg-slate-900'>
+                <div className='w-3/4 md:w-1/2 flex flex-col gap-y-8 px-8 py-8 bg-slate-800 rounded-lg mt-12'>
                     <h1 className='text-2xl md:text-4xl font-bold text-white text-center'>Assign Course To Instructor</h1>
 
                     <form onSubmit={AssignCourseHandler} className='text-xl'>
@@ -105,7 +105,7 @@ const AssignCourse = () => {
                                 <option disabled selected>Select Course </option>
                                 {
                                     courses.map((val, i) => {
-                                        { return <option value={val._id} >{val._id}</option> }
+                                        { return <option value={val._id} >{val.title}</option> }
                                     })
                                 }
 

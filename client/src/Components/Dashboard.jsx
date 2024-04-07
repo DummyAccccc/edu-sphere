@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import AdminDashboard from './AdminDashboard';
 import { useNavigate } from 'react-router-dom';
+import StudentDashboard from './StudentDashboard';
 
 
 const Dashboard = () => {
@@ -17,9 +18,11 @@ const Dashboard = () => {
     }, [role]);
     return (
         <>
-            <div className='w-full bg-gray-300 h-screen'>
+            <div className='w-full h-screen'>
 
                 {role == "Administrator" ? <AdminDashboard /> : ""}
+                {role == "Instructor" ? <AdminDashboard /> : ""}
+                {role == "Student" ? <StudentDashboard /> : ""}
 
             </div>
         </>
