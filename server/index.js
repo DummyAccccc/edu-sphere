@@ -5,6 +5,7 @@ const cors = require('cors')
 const User = require('./models/users.model')
 const Course = require('./models/course.model')
 const Instructor = require('./models/instructor.model')
+const Publish = require('./models/publish.model')
 const app = express()
 
 app.use(cors())
@@ -25,7 +26,7 @@ app.post('/users', async (req, res) => {
     try {
 
         const { user, name, email, mobile, company, password } = req.body;
-
+        console.log(user)
         const newUser = new User(user != "Administrator" ? { role: user, name: name, email: email, mobile: mobile, password: password } : { role: user, name: name, email: email, mobile: mobile, company: company, password: password });
 
         const savedUser = await newUser.save();
@@ -101,6 +102,38 @@ app.post('/assigncourse', async (req, res) => {
     }
 });
 
+app.post('/publish', async (req, res) => {
+    try {
+
+        const { id } = req.body;
+        console.log(id)
+        const newAssign = new Publish({ course: id });
+
+        const savedAssign = await newAssign.save();
+        res.json(savedAssign);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while Assigning the course' });
+    }
+});
+
+app.post('/enroll', async (req, res) => {
+    try {
+
+        const { id } = req.body;
+        console.log(id)
+        const newAssign = new Publish({ course: id });
+
+        const savedAssign = await newAssign.save();
+        res.json(savedAssign);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while Assigning the course' });
+    }
+});
+
+
+
 app.post('/checkcourse', async (req, res) => {
     try {
 
@@ -122,6 +155,17 @@ app.get('/fetchassign', async (req, res) => {
         const assign = await Instructor.find()
 
         res.send(assign);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching assign instructor' });
+    }
+});
+
+app.get('/fetchPublish', async (req, res) => {
+    try {
+        const publishData = await Publish.find()
+
+        res.send(publishData);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while fetching assign instructor' });

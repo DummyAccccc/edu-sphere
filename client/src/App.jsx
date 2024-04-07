@@ -7,6 +7,7 @@ import Courses from './Components/Courses'
 import NewCourse from './Components/NewCourse'
 import Instructor from './Components/Instructor'
 import AssignCourse from './Components/AssignCourse'
+import EnrollCourse from './Components/EnrollCourse'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,6 +22,7 @@ function App() {
         <Route path='/dashboard/instructor' element={<Instructor />}></Route>
         <Route path='/dashboard/newcourse' element={<NewCourse />}></Route>
         <Route path='/dashboard/assigncourse' element={<AssignCourse />}></Route>
+        <Route path='/dashboard/enroll' element={<EnrollCourse />}></Route>
 
       </Routes>
     </BrowserRouter>

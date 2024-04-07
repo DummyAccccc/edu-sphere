@@ -28,9 +28,9 @@ const HomePage = () => {
             <section >
                 <Footer />
             </section>
-            <section >
+            {/* <section >
                 <UserGithub />
-            </section>
+            </section> */}
 
             <section className='mt-30'>
                 <Dashboard02 />
