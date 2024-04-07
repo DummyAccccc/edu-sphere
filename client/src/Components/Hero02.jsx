@@ -1,4 +1,5 @@
 import React from 'react';
+import hero2 from '../assets/hero02.png'
 
 
 const Hero02 = () => {
@@ -8,7 +9,7 @@ const Hero02 = () => {
     <div className="container mx-auto max-w-6xl px-4">
       <div className="flex flex-col md:flex-row items-center justify-between ">
       <div className="md:w-1/2 mb-8 mr-20">
-          <img src="https://via.placeholder.com/500" alt="CRM Image" className="mx-auto md:ml-auto md:mb-8
+          <img src={hero2} alt="CRM Image" className="mx-auto md:ml-auto md:mb-8
 
            " />
         </div>
